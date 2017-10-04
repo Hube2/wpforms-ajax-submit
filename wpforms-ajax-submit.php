@@ -28,11 +28,6 @@
 			add_action('wp_ajax_nopriv_wpforms_ajax_submit', array($this, 'submit'));
 		} // end public function __construct
 		
-		public function capture_wpforms_process_smart_tags($url, $form_id, $fields) {
-			$this->redirect_url = $url;
-			return $url;
-		} // end public function capture_wpforms_process_smart_tags
-		
 		public function submit() {
 			//echo json_encode($_POST); exit;
 			if (!isset($_POST['wpforms']) || !isset($_POST['wpforms']['id'])) {
