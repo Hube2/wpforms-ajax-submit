@@ -43,15 +43,15 @@
 		} // end public function submit
 		
 		public function process_complete($location, $status) {
-			$return_date = array(
+			$return_data = array(
 				'form_id' => $this->form_id
 			);
 			if ($location === false) {
-				$return_date['content'] = do_shortcode('[wpforms id="'.$this->form_id.'"]');
+				$return_data['content'] = do_shortcode('[wpforms id="'.$this->form_id.'"]');
 			} else {
-				$return_date['redirect_url'] = $location;
+				$return_data['redirect_url'] = $location;
 			}
-			echo json_encode($return_date);
+			echo json_encode($return_data);
 			exit;
 		} // end public function process_complete
 		
