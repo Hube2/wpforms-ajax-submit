@@ -18,7 +18,6 @@
 	class WPForms_AJAX_submit {
 		
 		private $version = '0.0.1';
-		private $return_data = array();
 		private $form_id = 0;
 		private $redirect_url = '';
 		

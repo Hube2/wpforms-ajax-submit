@@ -13,14 +13,12 @@
 		$ = jQuery;
 		var ajaxurl = wpforms_ajax_submit_data.ajaxurl;
 		var ajaxdata = $('#'+form_id).serialize();
-		//ajaxdata.action = 'wpforms_ajax_submit';
 		$.ajax({
 			type: 'post',
 			dataType: 'json',
-      url: ajaxurl,
-      data: ajaxdata,
-      success: function(json) {
-				//console.log(json);
+			url: ajaxurl,
+			data: ajaxdata,
+			success: function(json) {
 				if (!json) {
 					return;
 				}
