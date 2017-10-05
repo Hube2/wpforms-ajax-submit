@@ -5,7 +5,7 @@
 		Plugin URI: https://github.com/Hube2/wpforms-ajax-submit
 		GitHub Plugin URI: https://github.com/Hube2/wpforms-ajax-submit
 		Description: AJAX Submission for WPForms
-		Version: 0.0.1
+		Version: 0.0.2
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2
 	*/
@@ -17,7 +17,7 @@
 	
 	class WPForms_AJAX_submit {
 		
-		private $version = '0.0.1';
+		private $version = '0.0.2';
 		private $form_id = 0;
 		private $redirect_url = '';
 		
@@ -34,7 +34,7 @@
 				exit;
 			}
 			$this->form_id = intval($_POST['wpforms']['id']);
-			add_filter('wp_redirect', array($this, 'process_complete'), 9999);
+			add_filter('wp_redirect', array($this, 'process_complete'), 9999, 2);
 			$wpforms = wpforms();
 			$wpforms->process->listen();
 			// this will not be called if wpforms does a redirect
