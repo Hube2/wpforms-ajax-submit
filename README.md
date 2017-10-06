@@ -31,7 +31,7 @@ After normal submission, WP forms will add a hash to the URL and it will look so
 ```
 http://www.mysite.com/#wpforms-8
 ```
-We can force the modal to open back up by adding this has value to a new data attibute
+We can force the modal to open back up by adding this hash value to a new data attibute
 of the trigger element like this:
 ```
 <a href="#" data-toggle="modal" data-target="#myModal" data-trigger="#wpforms-8">Open Modal</a>
