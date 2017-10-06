@@ -1,7 +1,19 @@
 	
-	// WPForms AJAX Submission
+	// WPForms AJAX Submission JS
 	
 	jQuery(document).ready(function($) {
+		if (typeof(FormData) == 'undefined') {
+			var trigger = location.hash;
+			if (trigger && trigger.match(/^#wpforms-/)) {
+				var triggerEl = $($('[data-trigger="'+trigger+'"]')[0]);
+				var triggerType = triggerEl.attr('data-trigger-type');
+				if (typeof(triggerType) == 'undefined') {
+					triggerType = 'click';
+				}
+				triggerEl.trigger(triggerType);
+			}
+			return;
+		}
 		$('.wpforms-ajax-submit form').each(function(index, element) {
 			var form_id = $(element).attr('id');
 			$(element).attr('action', 'javascript: wpforms_ajax_submit("'+form_id+'");');
@@ -12,12 +24,16 @@
 	function wpforms_ajax_submit(form_id) {
 		$ = jQuery;
 		var ajaxurl = wpforms_ajax_submit_data.ajaxurl;
-		var ajaxdata = $('#'+form_id).serialize();
-		$.ajax({
+		var form = $('#'+form_id).get(0);
+		ajaxdata = new FormData(form);
+		var ajaxobject = {
 			type: 'post',
 			dataType: 'json',
 			url: ajaxurl,
 			data: ajaxdata,
+			cache: false,
+			contentType: false,
+			processData: false,
 			success: function(json) {
 				if (!json) {
 					return;
@@ -43,5 +59,7 @@
 				//console.log(jqHXR);
 				//console.log(textStatus);
 			},
-		});
+		};
+		
+		$.ajax(ajaxobject);
 	}
