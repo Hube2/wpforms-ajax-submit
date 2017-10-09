@@ -1,6 +1,7 @@
 # wpforms-ajax-submit
 
 AJAX submission for WPForms
+(This is an add on for WPForms https://wordpress.org/plugins/wpforms-lite/ or http://wpforms.com/)
 
 Install like any other plugin
 
