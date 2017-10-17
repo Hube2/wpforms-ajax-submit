@@ -5,7 +5,7 @@
 		Plugin URI: https://github.com/Hube2/wpforms-ajax-submit
 		GitHub Plugin URI: https://github.com/Hube2/wpforms-ajax-submit
 		Description: AJAX Submission for WPForms
-		Version: 1.0.0
+		Version: 1.1.0
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2
 	*/

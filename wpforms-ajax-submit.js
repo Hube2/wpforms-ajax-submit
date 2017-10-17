@@ -1,9 +1,23 @@
 	
 	// WPForms AJAX Submission JS
 	
+	// this variable will record that a form was submitted through ajax
+	// or that the form was submitted at all
+	// this value is provided for a way to test to see if a form was submitted
+	var wpforms_ajax_submit_done = false;
+	
+	// this viable will hold the last form id submitted
+	// another variable that can be tested from another script
+	var wpforms_last_submitted_form = false;
+	
 	jQuery(document).ready(function($) {
+		
+		var trigger = location.hash;
+		if (!trigger.match(/^#wpforms-/)) {
+			trigger = false;
+		}
+		
 		if (typeof(FormData) == 'undefined') {
-			var trigger = location.hash;
 			if (trigger && trigger.match(/^#wpforms-/)) {
 				var triggerEl = $($('[data-trigger="'+trigger+'"]')[0]);
 				var triggerType = triggerEl.attr('data-trigger-type');
@@ -11,6 +25,8 @@
 					triggerType = 'click';
 				}
 				triggerEl.trigger(triggerType);
+				wpforms_ajax_submit_done = true;
+				wpforms_last_submitted_form = trigger;
 			}
 			return;
 		}
@@ -47,6 +63,8 @@
 					container.empty();
 					container.append(json['content']);
 				}
+				wpforms_ajax_submit_done = true;
+				wpforms_last_submitted_form = '#'+form_id;				
       },
 			error: function(jqHXR, textStatus, error) {
 				console.log('error');
