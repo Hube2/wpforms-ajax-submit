@@ -28,6 +28,7 @@
 		} // end public function __construct
 		
 		public function submit() {
+			set_time_limit(apply_filters('wpforms/ajax-submit/time-limit', 30));
 			if (!isset($_POST['wpforms']) || !isset($_POST['wpforms']['id'])) {
 				echo json_encode(false);
 				exit;
