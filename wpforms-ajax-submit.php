@@ -60,7 +60,10 @@
 			wp_register_script($handle, $src, $dep, $this->version, true);
 			
 			$object = 'wpforms_ajax_submit_data';
-			$data = array('ajaxurl' => admin_url('admin-ajax.php'));
+			$data = array(
+				'ajaxurl' => admin_url('admin-ajax.php'),
+				'disimage' => plugin_dir_url(__FILE__).'loading.gif'
+			);
 			wp_localize_script($handle, $object, $data);
 			
 			wp_enqueue_script($handle);
