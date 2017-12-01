@@ -45,3 +45,12 @@ then add the following attibute to your trigger element.
 ```
  data-trigger-action="some-javascirpt-action-here"
 ```
+#### ajax time limit
+The time limit for ajax requests is 30 seconds. To change:
+```
+add_filter('wpforms/ajax-submit/time-limit', 'change_wpforms_ajax_submit_time_limit');
+function change_wpforms_ajax_submit_time_limit($limit) {
+  $limit = 45; // php time limit in seconds
+	return $limit;
+}
+```
