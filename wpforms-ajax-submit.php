@@ -35,21 +35,37 @@
 			}
 			$this->form_id = intval($_POST['wpforms']['id']);
 			add_filter('wp_redirect', array($this, 'process_complete'), 9999, 2);
+			
+			// wpforms function that causes processing of the form
+			// this is added to the 'wp; hook by wp forms
+			// in the file wpforms/include/class-process.php
+			// 'wp' hook is not run/called during AJAX request
+			// ***this will need to be watched for any changes by wpforms
 			$wpforms = wpforms();
 			$wpforms->process->listen();
-			// this will not be called if wpforms does a redirect
+			
+			// if the form is set to redirect after submission
+			// we won't get here we, call the function directly
 			$this->process_complete(false, false);
 		} // end public function submit
 		
 		public function process_complete($location, $status) {
+			// this function will run on the wp_redirect
+			// if wp forms attempts to redirect
+			// and is called directly it dows not
 			$return_data = array(
 				'form_id' => $this->form_id
 			);
 			if ($location === false) {
+				// wpforms is not doing a redirect
+				// we need to do what it would nomally be done
+				// after a successful form submit
 				$return_data['content'] = do_shortcode('[wpforms id="'.$this->form_id.'"]');
 			} else {
+				// wpforms is doing a redirect, set the url to load
 				$return_data['redirect_url'] = $location;
 			}
+			// output json and exit
 			echo json_encode($return_data);
 			exit;
 		} // end public function process_complete
