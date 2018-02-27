@@ -42,12 +42,16 @@
 	}
 	
 	function wpforms_ajax_submit(form_id) {	
+		// define $
 		$ = jQuery;
+		
 		// disable form
 		var container = $('#'+form_id).parent();
 		container.css('position', 'relative');
 		var disabler = '<div id="'+form_id+'-disabler" style="background-image:url('+wpforms_ajax_submit_data.disimage+');background-position:left bottom;background-repeat:no-repeat;width:100%;height:100%;position:absolute;background-color:rgba(0,0,0,0.25);z-index:9999;"></div>';
 		container.prepend(disabler);
+		
+		// do AJAX request
 		var ajaxurl = wpforms_ajax_submit_data.ajaxurl;
 		var form = $('#'+form_id).get(0);
 		ajaxdata = new FormData(form);
