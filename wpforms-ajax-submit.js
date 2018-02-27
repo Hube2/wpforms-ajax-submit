@@ -75,8 +75,8 @@
 					$(form).append('<input type="hidden" name="action" value="wpforms_ajax_submit" />');
 				}
 				wpforms_ajax_submit_done = true;
-				wpforms_last_submitted_form = '#'+form_id;				
-      },
+				wpforms_last_submitted_form = '#'+form_id;
+			},
 			error: function(jqHXR, textStatus, error) {
 				console.log('error');
 				console.log(jqHXR);
