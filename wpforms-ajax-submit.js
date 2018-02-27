@@ -31,11 +31,15 @@
 			return;
 		}
 		$('.wpforms-ajax-submit form').each(function(index, element) {
-			var form_id = $(element).attr('id');
-			$(element).attr('action', 'javascript: wpforms_ajax_submit("'+form_id+'");');
-			$(element).append('<input type="hidden" name="action" value="wpforms_ajax_submit" />');
+			wpforms_alter_submit(element);
 		});
 	});
+	
+	function wpforms_alter_submit(form) {
+		var form_id = $(form).attr('id');
+		$(form).attr('action', 'javascript: wpforms_ajax_submit("'+form_id+'");');
+		$(form).append('<input type="hidden" name="action" value="wpforms_ajax_submit" />');
+	}
 	
 	function wpforms_ajax_submit(form_id) {	
 		$ = jQuery;
@@ -70,9 +74,8 @@
 					// make changes to the form that was just inserted
 					// so it keeps working
 					// thanks @caleb-smith-capstorm
-					form = $('#'+form_id).get(0);
-					$(form).attr('action', 'javascript: wpforms_ajax_submit("'+form_id+'");');
-					$(form).append('<input type="hidden" name="action" value="wpforms_ajax_submit" />');
+					var form = $('#'+form_id).get(0);
+					wpforms_alter_submit(form);
 				}
 				wpforms_ajax_submit_done = true;
 				wpforms_last_submitted_form = '#'+form_id;
