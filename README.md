@@ -16,10 +16,11 @@ may or may not support this feature.
 
 ***Browsers not supporting this feature will revert to the standard WPForms submission process and will not use AJAX.***
 
-As far as I can tell, using the FormData object allows all field types and all WPForms features to
-work as they're supposed to.
+**As far as I can tell, using the FormData object allows all field types and all WPForms features to
+work as they're supposed to. If you find something that does not work please let me know in the issues.**
 
-#### using with modal forms
+
+### using with modal forms
 
 In the case of browsers that do not support FormData and you're putting the form in a modal you can
 force the reopening of the modal window after the form is submitted. This is done by adding an extra
