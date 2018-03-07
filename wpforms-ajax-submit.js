@@ -36,6 +36,9 @@
 	});
 	
 	function wpforms_alter_submit(form) {
+		// define $
+		$ = jQuery;
+		
 		var form_id = $(form).attr('id');
 		$(form).attr('action', 'javascript: wpforms_ajax_submit("'+form_id+'");');
 		$(form).append('<input type="hidden" name="action" value="wpforms_ajax_submit" />');
