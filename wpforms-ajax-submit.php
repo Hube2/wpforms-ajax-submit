@@ -78,9 +78,19 @@
 			
 			$object = 'wpforms_ajax_submit_data';
 			$data = array(
-				'ajaxurl' => admin_url('admin-ajax.php'),
-				'disimage' => plugin_dir_url(__FILE__).'loading.gif'
+				'parent_positioning' => 'relative',
+				'overlay_positioning' => 'absolute',
+				'overlay_bg_color' => 'rgba(0,0,0,0.25)',
+				'overlay_z_index' => '9999',
+				'loading_image' => plugin_dir_url(__FILE__).'loading.gif',
+				'loading_image_position' => 'left bottom',
+				'loading_image_size' => 'auto',
+				'loading_image_repeat' => 'no-repeat'
 			);
+			$data = apply_filters('wpforms/ajax-submit/js-data', $data);
+			
+			$data['ajaxurl'] = admin_url('admin-ajax.php');
+			
 			wp_localize_script($handle, $object, $data);
 			
 			wp_enqueue_script($handle);

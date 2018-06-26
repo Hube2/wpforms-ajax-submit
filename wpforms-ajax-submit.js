@@ -51,8 +51,8 @@
 		// disable form
 		var container = $('#'+form_id).parent();
 		container.css('position', 'relative');
-		var disabler = '<div id="'+form_id+'-disabler" style="background-image:url('+wpforms_ajax_submit_data.disimage+');background-position:left bottom;background-repeat:no-repeat;width:100%;height:100%;position:absolute;background-color:rgba(0,0,0,0.25);z-index:9999;"></div>';
-		container.prepend(disabler);
+		var overlay = '<div id="'+form_id+'-overlay" style="background-image:url('+wpforms_ajax_submit_data.loading_image+');background-position:left bottom;background-repeat:no-repeat;width:100%;height:100%;position:absolute;background-color:rgba(0,0,0,0.25);z-index:9999;"></div>';
+		container.prepend(overlay);
 		
 		// do AJAX request
 		var ajaxurl = wpforms_ajax_submit_data.ajaxurl;
@@ -68,7 +68,7 @@
 			processData: false,
 			success: function(json) {
 				// enable form
-				$('#'+form_id+'-disabler').remove();
+				$('#'+form_id+'-overlay').remove();
 				if (!json) {
 					return;
 				}
