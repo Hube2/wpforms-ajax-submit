@@ -36,6 +36,10 @@
 			$this->form_id = intval($_POST['wpforms']['id']);
 			add_filter('wp_redirect', array($this, 'process_complete'), 9999, 2);
 			
+			// filer for 3rd party filering of form submission
+			// allows passing the form ID value to something else
+			do_action('wpforms/ajax-submit/form-submitted', $this->form_id);
+			
 			// wpforms function that causes processing of the form
 			// this is added to the 'wp; hook by wp forms
 			// in the file wpforms/include/class-process.php
@@ -65,6 +69,10 @@
 				// wpforms is doing a redirect, set the url to load
 				$return_data['redirect_url'] = $location;
 			}
+			
+			// third party action before returning data
+			do_action('wpforms/ajax-submit/process-complete', $return_data);
+			
 			// output json and exit
 			echo json_encode($return_data);
 			exit;
