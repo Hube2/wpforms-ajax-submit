@@ -1,6 +1,6 @@
 # wpforms-ajax-submit
 
-# ***Notice: WPForms has been updated and they have removed the query string parameter on page refresh. Do to this the "Modal" options will probably no longer work***
+# ***Notice: WPForms Version 1.5.3 now includes AJAX form submission natively and this plugin is no longer required. You should remove this plugin from your site.***
 
 AJAX submission for WPForms
 (This is an add on for WPForms https://wordpress.org/plugins/wpforms-lite/ or http://wpforms.com/)
